@@ -1,0 +1,21 @@
+mkdir dir1
+cd dir1
+echo "Contents of foo" > foo.txt
+cp ~/Downloads/bar.png ./bar.png
+ls
+>bar.png	foo.txt
+cd ..
+git init
+>Initialized empty Git repository in /Users/avrybintsev/Documents/git_task/special_commit/.git/
+git hash-object -w dir1/foo.txt
+>ec9f002ad0a2e1064bdbed360a7942e54f1c33fc
+git update-index --add dir1/foo.txt
+git hash-object -w dir1/bar.png
+>5f9bf9bf03f50b45c9fdeb44035889900b345f4d
+git update-index --add dir1/bar.png
+git write-tree
+>2310c517f5800b82f865aa9274b27dcedb96ca9e
+echo 'special commit' | git commit-tree 2310c517f5800b82f865aa9274b27dcedb96ca9e
+>c3e79e8f4bd7cb712673439e2104c8b34f235761
+git update-ref HEAD c3e79e8f4bd7cb712673439e2104c8b34f235761
+
